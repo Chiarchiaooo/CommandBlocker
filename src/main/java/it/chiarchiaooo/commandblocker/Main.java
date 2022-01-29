@@ -56,7 +56,7 @@ public final class Main extends JavaPlugin {
     }
 
     private void registerCommands() {
-        getCommand("cmdblockreload").setExecutor(new ReloadCommand());
+        getCommand("cmdblock").setExecutor(new ReloadCommand());
     }
 
     private void registerEvents() {
