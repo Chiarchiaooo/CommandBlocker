@@ -1,0 +1,19 @@
+name: CommandBlocker
+version: '${project.version}'
+main: it.chiarchiaooo.commandblocker.Main
+api-version: 1.17
+authors: [ Chiarchiaooo ]
+description: CommandBlocker 1.17x
+
+commands:
+  cmdblockreload:
+    description: reload config
+    permission: cmdblock.reload
+
+permissions:
+  cmdblock.bypass.*:
+    description: General bypass permission
+  cmdblock.bypass.<command>:
+    description: Single command bypass permission
+  cmdblock.reload:
+    description: Reload command permission
