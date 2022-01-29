@@ -17,3 +17,5 @@ permissions:
     description: Single command bypass permission
   cmdblock.reload:
     description: Reload command permission
+  cmdblock.restart:
+    description: Force-restart command permission
