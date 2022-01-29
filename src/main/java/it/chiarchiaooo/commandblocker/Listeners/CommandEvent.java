@@ -50,6 +50,10 @@ public class CommandEvent implements Listener {
             }
             if (block) {
                 event.setCancelled(true);
+                if (blockmsg == "default") {
+                    p.sendMessage("Unknown command. Type \"/help\" for help.");
+                    return;
+                }
                 blockmsg.replace("%prefix",prefix);
                 blockmsg.replace("%player%",p.getDisplayName());
                 blockmsg.replace("%command%",msg);
