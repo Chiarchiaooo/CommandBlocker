@@ -26,7 +26,7 @@ public class CommandEvent implements Listener {
     @EventHandler
     public static void CmdEvent(PlayerCommandPreprocessEvent event) {
         if (BlockEnable) {
-            String msg = blockmsg.replace("%player%",event.getPlayer().getDisplayName()).replace("%command%",event.getMessage());
+            String msg = blockmsg.replace("%prefix%",prefix).replace("%player%",event.getPlayer().getDisplayName()).replace("%command%",event.getMessage());
             for (String staffalcmds : staffcmds) {
                 commandBypasses.put(staffalcmds, "cmdblock.bypass." + staffalcmds.substring(1));
             }
