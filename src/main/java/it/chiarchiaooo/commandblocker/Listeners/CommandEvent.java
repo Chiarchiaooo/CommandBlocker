@@ -24,16 +24,15 @@ public class CommandEvent implements Listener {
     static boolean block = true;
 
     @EventHandler
-    public static void CmdEvent(PlayerCommandPreprocessEvent event){
-        String msg = event.getMessage();
-        Player p = event.getPlayer();
+    public static void CmdEvent(PlayerCommandPreprocessEvent event) {
+        String msg = blockmsg.replace("%prefix%",prefix).replace("%player%",event.getPlayer().getDisplayName()).replace("%command%",event.getMessage());
         if (BlockEnable) {
             for (String staffalcmds : staffcmds) {
                 commandBypasses.put(staffalcmds, "cmdblock.bypass." + staffalcmds.substring(1));
             }
             for (Map.Entry m : commandBypasses.entrySet()) {
                 if (StringUtils.startsWithIgnoreCase(msg, (String) m.getKey())) {
-                    if (p.hasPermission((String) m.getValue())) {
+                    if (event.getPlayer().hasPermission((String) m.getValue())) {
                         block = false;
                         break;
                     }
@@ -45,19 +44,12 @@ public class CommandEvent implements Listener {
                     break;
                 }
             }
-            if (p.hasPermission(genbypass)) {
+            if (event.getPlayer().hasPermission(genbypass)) {
                 block = false;
             }
             if (block) {
                 event.setCancelled(true);
-                if (blockmsg == "default") {
-                    p.sendMessage("Unknown command. Type \"/help\" for help.");
-                    return;
-                }
-                blockmsg.replace("%prefix",prefix);
-                blockmsg.replace("%player%",p.getDisplayName());
-                blockmsg.replace("%command%",msg);
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&',blockmsg));
+                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',msg));
             }
         }
     }
