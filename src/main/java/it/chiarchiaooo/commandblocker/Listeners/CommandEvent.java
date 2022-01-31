@@ -34,7 +34,6 @@ public class CommandEvent implements Listener {
                 commandBypasses.put(staffalcmds, "cmdblock.bypass." + staffalcmds.substring(1));
             }
             for (String alcmd : cmds) {
-                event.getPlayer().sendMessage(alcmd);
                 if (StringUtils.startsWithIgnoreCase(event.getMessage(), alcmd)) {
                     block = false;
                     break;
