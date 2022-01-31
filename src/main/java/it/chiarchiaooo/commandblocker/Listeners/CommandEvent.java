@@ -24,28 +24,28 @@ public class CommandEvent implements Listener {
     static boolean block = true;
 
     @EventHandler
-    public static void CmdEvent(PlayerCommandPreprocessEvent event) {
+    public static void CmdEvent(PlayerCommandPreprocessEvent event){
         if (BlockEnable) {
+            if (event.getPlayer().hasPermission(genbypass)) {
+                return;
+            }
             String msg = blockmsg.replace("%prefix%",prefix).replace("%player%",event.getPlayer().getDisplayName()).replace("%command%",event.getMessage());
             for (String staffalcmds : staffcmds) {
                 commandBypasses.put(staffalcmds, "cmdblock.bypass." + staffalcmds.substring(1));
             }
-            for (Map.Entry m : commandBypasses.entrySet()) {
-                if (StringUtils.startsWithIgnoreCase(msg, (String) m.getKey())) {
-                    if (event.getPlayer().hasPermission((String) m.getValue())) {
-                        block = false;
-                        break;
-                    }
-                }
-            }
             for (String alcmd : cmds) {
-                if (StringUtils.startsWithIgnoreCase(msg, alcmd)) {
+                event.getPlayer().sendMessage(alcmd);
+                if (StringUtils.startsWithIgnoreCase(event.getMessage(), alcmd)) {
                     block = false;
                     break;
                 }
             }
-            if (event.getPlayer().hasPermission(genbypass)) {
-                block = false;
+            for (Map.Entry m : commandBypasses.entrySet()) {
+                if (StringUtils.startsWithIgnoreCase(event.getMessage(), (String) m.getKey())) {
+                    if (event.getPlayer().hasPermission((String) m.getValue())) {
+                        block = false;
+                        break;                    }
+                }
             }
             if (block) {
                 event.setCancelled(true);
