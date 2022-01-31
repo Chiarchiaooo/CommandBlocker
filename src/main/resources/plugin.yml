@@ -6,7 +6,7 @@ authors: [ Chiarchiaooo ]
 description: CommandBlocker 1.17x
 
 commands:
-  cmdblockreload:
+  cmdblock:
     description: reload config
     permission: cmdblock.reload
 
