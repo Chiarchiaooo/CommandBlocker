@@ -26,7 +26,7 @@ public final class Main extends JavaPlugin {
         log.info(ChatColor.translateAlternateColorCodes('&',"&aEnabled "));
         log.info(ChatColor.translateAlternateColorCodes('&',"&eMade by &6Chiarchiaooo&7 (&6Sussoliny#9971&7)"));
         saveDefaultConfig();
-        getCommand("cmdblock").setExecutor(new ReloadCommand());
+        getCommand("cmdblockreload").setExecutor(new ReloadCommand());
 
         getServer().getPluginManager().registerEvents(new CommandEvent(), this);
         getServer().getPluginManager().registerEvents(new TabCompleteEvent(), this);
