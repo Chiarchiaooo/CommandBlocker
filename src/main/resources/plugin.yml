@@ -6,7 +6,7 @@ authors: [ Chiarchiaooo ]
 description: CommandBlocker 1.17x
 
 commands:
-  cmdblock:
+  cmdblockreload:
     description: reload config
     permission: cmdblock.reload
 
@@ -15,7 +15,3 @@ permissions:
     description: General bypass permission
   cmdblock.bypass.<command>:
     description: Single command bypass permission
-  cmdblock.reload:
-    description: Reload command permission
-  cmdblock.restart:
-    description: Force-restart command permission
