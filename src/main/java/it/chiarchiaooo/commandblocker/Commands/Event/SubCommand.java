@@ -5,5 +5,5 @@ import org.bukkit.entity.Player;
 public abstract class SubCommand {
     public abstract String getName();
 
-    public abstract void perform(Player paramPlayer, String[] paramArrayOfString);
+    public abstract boolean perform(Player paramPlayer, String[] paramArrayOfString);
 }
