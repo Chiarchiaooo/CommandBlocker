@@ -1,30 +1,29 @@
 package it.chiarchiaooo.commandblocker.Commands.Arguments;
 
-import it.chiarchiaooo.commandblocker.Commands.Event.SubCommand;
+import it.chiarchiaooo.commandblocker.CommandHandler;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 
-public class HelpArgument extends SubCommand {
-    public String getName() {
-        return "help";
-    }
+public class HelpArgument implements CommandHandler.CommandInterface {
 
-    public void perform(Player player, String[] args) {
-        if (player.hasPermission("*") || player.isOp()) {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&'," "));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&lCommandBlocker &8»"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&'," "));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6Api-Version: &f1.0"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6Core-Version: &f1.0"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&'," "));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&o/cmdblock help &8- &fList of all commands"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&o/cmdblock reload &8- &fReload plugin configuration. "));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&o/cmdblock restart &8- &fForce restart a plugin."));
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        if (sender.hasPermission("*") || sender.isOp()) {
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&'," "));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&lCommandBlocker &8»"));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&'," "));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6Version: &f1.4"));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&'," "));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&o/cmdblock help &8- &fShows this list"));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&o/cmdblock reload &8- &fReload plugin configuration. "));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&o/cmdblock restart &8- &fForce restart a plugin."));
         } else {
-            player.sendMessage(" ");
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&lCommandBlocker &6&lDeveloper: "));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&7» &fChiarchiaooo"));
-            player.sendMessage(" ");
+            sender.sendMessage(" ");
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&lCommandBlocker &6&lDeveloper: "));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&7» &fChiarchiaooo"));
+            sender.sendMessage(" ");
         }
+        return false;
     }
 }
