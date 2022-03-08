@@ -1,21 +1,23 @@
-
+#
 #SET PREFIX HERE
 prefix: ""
-
+#
 #here you can toggle the command blocker
 # true: player and staff without op, specific or general bypass permission won't see neither execute not whitelisted commands
 enabled: true
-
+#
 #here you can set the message player and staff without op, specific or general bypass permission will receive if they try to execute a blocked command
 # avaiable placeholders: %prefix%, %player%, %command%, no support for PAPI yet
-
+#
 blocked-command-message: "%prefix% &cUnknown Command"
-
+#
+cmd-arg-not-found-message: "%prefix% &cUnknown argument %arg%"
+#
 #here you can set commands that every user (regardless of their rank and permission) can execute and see
 # remember to use "" and start the commmand with a / otherwise the blocker won't work or will spam errors
 allowed-cmds:
   - "/examplecommand"
-
+#
   #here you can set commands that only user with command's specific permission (orientalcmds.command.bypass.<command>) can execute and see
   # remember to use "" and start only commmands with a / otherwise the blocker won't allow the player to run the command, since it doesen't have permission
   # it's better to set staff commands here, since you can have more control on who can do what

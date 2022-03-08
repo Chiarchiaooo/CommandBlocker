@@ -1,28 +1,21 @@
 package it.chiarchiaooo.commandblocker.Commands.Arguments;
 
-import it.chiarchiaooo.commandblocker.Commands.Event.SubCommand;
+import it.chiarchiaooo.commandblocker.CommandHandler;
 import it.chiarchiaooo.commandblocker.Main;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 
-public class RestartArgument extends SubCommand {
-    public String getName() {
-        return "restart";
-    }
+public class RestartArgument implements CommandHandler.CommandInterface {
 
-    public void perform(Player p, String[] args) {
-        if (p.hasPermission("cmdblock.restart")) {
-            p.sendMessage(" ");
-            p.sendMessage(format("&aQua scrivi il messaggio che vuoi per il force restart"));
-            Main.getInstance().restartPlugin();
-        } else {
-            p.sendMessage(" ");
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&lCommandBlocker &6&lDeveloper: "));
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&',"&7» &fChiarchiaooo"));
-            p.sendMessage(" ");
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        if (sender.hasPermission("cmdblock.reload")) {
+            sender.sendMessage(" ");
+            Main.getInstance().getLogger().info(ChatColor.translateAlternateColorCodes('&', "&aPlugin restart forced"));
+            Main.getInstance().onDisable();
+            Main.getInstance().onEnable();
         }
-    }
-    private static String format(String string) {
-        return ChatColor.translateAlternateColorCodes('&', string);
+        return false;
     }
 }

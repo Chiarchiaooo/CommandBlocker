@@ -1,25 +1,21 @@
 package it.chiarchiaooo.commandblocker.Commands.Arguments;
 
-import it.chiarchiaooo.commandblocker.Commands.Event.SubCommand;
+import it.chiarchiaooo.commandblocker.CommandHandler;
 import it.chiarchiaooo.commandblocker.Main;
 import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class ReloadArgument extends SubCommand {
-    public String getName() {
-        return "reload";
-    }
-
-    public void perform(Player p, String[] args) {
-        if (p.hasPermission("cmdblock.reload") || p.hasPermission("*") || p.isOp()) {
-            p.sendMessage(" ");
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&',"Plugin ricaricato con successo."));
-            Main.getInstance().reloadPlugin();
-        } else {
-            p.sendMessage(" ");
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&lCommandBlocker &6&lDeveloper: "));
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&',"&7» &fChiarchiaooo"));
-            p.sendMessage(" ");
+public class ReloadArgument implements CommandHandler.CommandInterface {
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        if (sender.hasPermission("cmdblock.reload") || sender.isOp()) {
+            Main.getInstance().getLogger().info("Reloading configs...");
+            Main.getInstance().reloadConfig();
+            if (sender instanceof Player) Main.getInstance().getLogger().info(ChatColor.translateAlternateColorCodes('&', "&aConfig reloaded"));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aPlugin reloaded Successfully"));
         }
+        return false;
     }
 }
