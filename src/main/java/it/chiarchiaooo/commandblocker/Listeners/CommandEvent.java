@@ -3,7 +3,6 @@ package it.chiarchiaooo.commandblocker.Listeners;
 import it.chiarchiaooo.commandblocker.Main;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
