@@ -9,7 +9,7 @@ public class HelpArgument implements CommandHandler.CommandInterface {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        if (sender.hasPermission("*") || sender.isOp()) {
+        if (!(sender.hasPermission("*") || sender.isOp())) return true;
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&'," "));
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&lCommandBlocker &8»"));
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&'," "));
@@ -18,12 +18,6 @@ public class HelpArgument implements CommandHandler.CommandInterface {
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&o/cmdblock help &8- &fShows this list"));
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&o/cmdblock reload &8- &fReload plugin configuration. "));
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&o/cmdblock restart &8- &fForce restart a plugin."));
-        } else {
-            sender.sendMessage(" ");
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&6&lCommandBlocker &6&lDeveloper: "));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&7» &fChiarchiaooo"));
-            sender.sendMessage(" ");
-        }
         return false;
     }
 }
