@@ -1,6 +1,6 @@
 package it.chiarchiaooo.commandblocker.Commands;
 
-import it.chiarchiaooo.commandblocker.CommandHandler;
+import it.chiarchiaooo.commandblocker.utils.CommandHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

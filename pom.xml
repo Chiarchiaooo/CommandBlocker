@@ -6,12 +6,12 @@
 
     <groupId>it.chiarchiaooo</groupId>
     <artifactId>CommandBlocker</artifactId>
-    <version>1.0</version>
+    <version>1.5</version>
     <packaging>jar</packaging>
 
     <name>CommandBlocker</name>
 
-    <description>CommandBlocker 1.17x</description>
+    <description>CommandBlocker 1.18x</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

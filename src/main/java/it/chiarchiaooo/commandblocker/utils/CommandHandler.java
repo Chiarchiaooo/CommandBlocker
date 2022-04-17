@@ -1,15 +1,28 @@
-package it.chiarchiaooo.commandblocker;
+package it.chiarchiaooo.commandblocker.utils;
 
+import it.chiarchiaooo.commandblocker.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+
 import java.util.HashMap;
 
 
 
 //The class will implement CommandExecutor.
 public class CommandHandler implements CommandExecutor {
+
+    private Main plugin;
+    private FileConfiguration config;
+    private HashMap<String, CommandInterface> commands;
+
+    public CommandHandler(Main pl) {
+        this.plugin = pl;
+        this.config = pl.getConfig();
+        this.commands = pl.commands;
+    }
 
     //IMPORTANT: This is an interface, not a class.
     public interface CommandInterface {
@@ -19,10 +32,8 @@ public class CommandHandler implements CommandExecutor {
 
     }
 
-    private Main plugin = Main.getInstance();
 
     //This is where we will store the commands
-    public static HashMap<String, CommandInterface> commands = new HashMap<>();
 
     //Register method. When we register commands in our onEnable() we will use this.
     public void register(String name, CommandInterface cmd) {
@@ -46,7 +57,7 @@ public class CommandHandler implements CommandExecutor {
                     commands.get(args[0]).onCommand(sender, cmd, commandLabel, args);
             } else {
                 //We want to send a message to the sender if the command doesn't exist.
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("messages.noarg").replace("%prefix%",plugin.getConfig().getString("prefix")).replace("%arg%",args[0])));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&',config.getString("cmd-arg-not-found-message").replace("%prefix%",config.getString("prefix")).replace("%arg%",args[0])));
             }
         }
         return true;
