@@ -1,6 +1,6 @@
 #
 #SET PREFIX HERE
-prefix: ""
+prefix: "prefix >"
 #
 #here you can toggle the command blocker
 # true: player and staff without op, specific or general bypass permission won't see neither execute not whitelisted commands
