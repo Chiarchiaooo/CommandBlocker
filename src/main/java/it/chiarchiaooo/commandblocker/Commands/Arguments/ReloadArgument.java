@@ -1,19 +1,27 @@
 package it.chiarchiaooo.commandblocker.Commands.Arguments;
 
-import it.chiarchiaooo.commandblocker.CommandHandler;
+import it.chiarchiaooo.commandblocker.utils.CommandHandler;
 import it.chiarchiaooo.commandblocker.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+
 public class ReloadArgument implements CommandHandler.CommandInterface {
+
+    private Main plugin;
+
+    public ReloadArgument(Main pl) {
+        this.plugin = pl;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (sender.hasPermission("cmdblock.reload") || sender.isOp()) {
-            Main.getInstance().getLogger().info("Reloading configs...");
-            Main.getInstance().reloadConfig();
-            if (sender instanceof Player) Main.getInstance().getLogger().info(ChatColor.translateAlternateColorCodes('&', "&aConfig reloaded"));
+            plugin.getLogger().info("Reloading configs...");
+            plugin.reloadConfig();
+            if (sender instanceof Player) plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', "&aConfig reloaded"));
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aPlugin reloaded Successfully"));
         }
         return false;

@@ -3,6 +3,7 @@ package it.chiarchiaooo.commandblocker.Listeners;
 import it.chiarchiaooo.commandblocker.Main;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -13,17 +14,23 @@ import java.util.Map;
 
 public class CommandEvent implements Listener {
 
-    static List<String> cmds = Main.getInstance().getConfig().getStringList("allowed-cmds");
-    static List<String> staffcmds = Main.getInstance().getConfig().getStringList("single-allowed-cmds");
-    static String blockmsg = Main.getInstance().getConfig().getString("blocked-command-message");
-    static boolean BlockEnable = Main.getInstance().getConfig().getBoolean("enabled");
-    static String prefix = Main.getInstance().getConfig().getString("prefix");
-    static Map<String, String> commandBypasses = new HashMap<>();
-    static final String genbypass = "cmdblock.bypass.*";
-    static boolean block = true;
+    private FileConfiguration config;
+
+    public CommandEvent(Main pl) {
+        this.config = pl.getConfig();
+    }
+
+     List<String> cmds = config.getStringList("allowed-cmds");
+     List<String> staffcmds = config.getStringList("single-allowed-cmds");
+     String blockmsg = config.getString("blocked-command-message");
+     boolean BlockEnable = config.getBoolean("enabled");
+     String prefix = config.getString("prefix");
+     Map<String, String> commandBypasses = new HashMap<>();
+     final String genbypass = "cmdblock.bypass.*";
+     boolean block = true;
 
     @EventHandler
-    public static void CmdEvent(PlayerCommandPreprocessEvent event){
+    public void CmdEvent(PlayerCommandPreprocessEvent event){
         if (BlockEnable) {
             if (event.getPlayer().hasPermission(genbypass)) {
                 return;
