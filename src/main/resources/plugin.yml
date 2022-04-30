@@ -1,9 +1,9 @@
 name: CommandBlocker
-version: '${project.version}'
+version: 1.6
 main: it.chiarchiaooo.commandblocker.Main
 api-version: 1.18
 authors: [ Chiarchiaooo ]
-description: CommandBlocker 1.17x
+description: CommandBlocker 1.18x
 
 commands:
   cmdblock:

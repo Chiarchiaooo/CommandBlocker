@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TabCompleteHandler implements TabCompleter {
 
-    private HashMap<String, CommandHandler.CommandInterface> commands;
+    private final HashMap<String, CommandHandler.CommandInterface> commands;
 
     public TabCompleteHandler(Main pl) {
         this.commands = pl.commands;
