@@ -16,32 +16,29 @@ import java.util.Map;
 
 public class TabCompleteEvent implements Listener {
 
-    private FileConfiguration config;
+    //variables declaration
+    private final FileConfiguration config;
+    private final Map<String, String> commandBypasses;
 
     public TabCompleteEvent(Main pl) {
         this.config = pl.getConfig();
+        this.commandBypasses = new HashMap<>();
     }
 
-    //config and class variables declaration
-    boolean BlockEnable = config.getBoolean("enabled");
-    List<String> cmds = config.getStringList("allowed-cmds");
-    List<String> staffcmds = config.getStringList("single-allowed-cmds");
-    Map<String, String> commandBypasses = new HashMap<>();
-    final String genbypass = "cmdblock.bypass.*";
 
     @EventHandler(ignoreCancelled = true)
     public void onCommandSend(final PlayerCommandSendEvent event) { //commands suggestions check on player join (rejoin after plugin reload to apply changes)
         // Make sure command blocker is enabled from config
-        if (BlockEnable) {
-            if (event.getPlayer().hasPermission(genbypass)) {return;} //check for global bypass permission: orientalcmds.cmd.bypass.*
+        if (config.getBoolean("enabled")) {
+            if (event.getPlayer().hasPermission("cmdblock.bypass.*")) {return;} //check for global bypass permission: orientalcmds.cmd.bypass.*
 
             event.getCommands().clear(); // Remove every command suggestion
 
-            for (String staffalcmds : staffcmds) {  //creating hashmap for permission blocked commands
+            for (String staffalcmds : config.getStringList("single-allowed-cmds")) {  //creating hashmap for permission blocked commands
                 commandBypasses.put(staffalcmds, "cmdblock.bypass." + staffalcmds.substring(1)); //layout: command (with /) , orientalcmds.command.bypass.<command> (without /)
             }
 
-            for (String str: cmds) { //loop between normal allowed commands (commands that everybody can execute and see)
+            for (String str: config.getStringList("allowed-cmds")) { //loop between normal allowed commands (commands that everybody can execute and see)
                 event.getCommands().add(str.substring(1)); // Remove blocked commands from the suggestions list.
             }
 
