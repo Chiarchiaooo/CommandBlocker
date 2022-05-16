@@ -14,12 +14,14 @@ import java.util.Map;
 
 public class CommandEvent implements Listener {
 
+    private final Main plugin;
     private final FileConfiguration config;
-    Map<String, String> commandBypasses = new HashMap<>();
+    private final Map<String, String> commandBypasses = new HashMap<>();
     final String genbypass = "cmdblock.bypass.*";
     boolean block = true;
 
     public CommandEvent(Main pl) {
+        this.plugin = pl;
         this.config = pl.getConfig();
     }
     
@@ -48,7 +50,7 @@ public class CommandEvent implements Listener {
             }
             if (block) {
                 event.setCancelled(true);
-                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',config.getString("blocked-command-message").replace("%prefix%",config.getString("prefix")).replace("%player%",event.getPlayer().getDisplayName()).replace("%command%",event.getMessage())));
+                event.getPlayer().sendMessage(plugin.sendmsg(event.getPlayer(),config.getString("blocked-command-message").replace("%command%",event.getMessage())));
             }
         }
     }
