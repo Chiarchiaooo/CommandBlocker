@@ -4,6 +4,7 @@ main: it.chiarchiaooo.commandblocker.Main
 api-version: 1.18
 authors: [ Chiarchiaooo ]
 description: CommandBlocker 1.18x
+softdepend: [PlaceholderAPI]
 
 commands:
   cmdblock:
