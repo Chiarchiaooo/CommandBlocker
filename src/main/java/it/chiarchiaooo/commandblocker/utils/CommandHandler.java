@@ -14,14 +14,11 @@ import java.util.HashMap;
 //The class will implement CommandExecutor.
 public class CommandHandler implements CommandExecutor {
 
-    private Main plugin;
-    private FileConfiguration config;
-    private HashMap<String, CommandInterface> commands;
+    private final FileConfiguration config;
+    public static HashMap<String, CommandInterface> commands = new HashMap<>();
 
     public CommandHandler(Main pl) {
-        this.plugin = pl;
         this.config = pl.getConfig();
-        this.commands = pl.commands;
     }
 
     //IMPORTANT: This is an interface, not a class.

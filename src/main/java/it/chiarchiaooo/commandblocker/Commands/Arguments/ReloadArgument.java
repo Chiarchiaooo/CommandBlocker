@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class ReloadArgument implements CommandHandler.CommandInterface {
 
-    private Main plugin;
+    private final Main plugin;
 
     public ReloadArgument(Main pl) {
         this.plugin = pl;
@@ -22,7 +22,7 @@ public class ReloadArgument implements CommandHandler.CommandInterface {
             plugin.getLogger().info("Reloading configs...");
             plugin.reloadConfig();
             if (sender instanceof Player) plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', "&aConfig reloaded"));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aPlugin reloaded Successfully"));
+            sender.sendMessage(plugin.sendmsg(null,"&aPlugin reloaded Successfully"));
         }
         return false;
     }
