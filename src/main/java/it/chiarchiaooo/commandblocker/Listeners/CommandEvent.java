@@ -1,15 +1,13 @@
 package it.chiarchiaooo.commandblocker.Listeners;
 
 import it.chiarchiaooo.commandblocker.Main;
-import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CommandEvent implements Listener {
