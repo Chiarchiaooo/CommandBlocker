@@ -1,9 +1,9 @@
 name: CommandBlocker
-version: 1.8
-main: it.chiarchiaooo.commandblocker.Main
+version: "$version"
+main: it.chiarchiaooo.commandblocker.CommandBlocker
 api-version: 1.19
 authors: [ Chiarchiaooo ]
-description: CommandBlocker 1.18x
+description: Simple Command Blocking plugin made for minecraft 1.19x
 softdepend: [PlaceholderAPI]
 
 commands:
@@ -15,7 +15,7 @@ permissions:
     description: General bypass permission
   cmdblock.bypass.<command>:
     description: Single command bypass permission
-  cmdblock.reload:
-    description: Reload plugin config
-  cmdblock.restart:
-    description: Forcely restart plugin
+  cmdblock.bypass.<group>:
+    description: Group-based command bypass permission
+  cmdblock.<command>.command:
+    description: Access to a specific command
