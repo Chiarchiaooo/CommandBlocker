@@ -1,26 +1,101 @@
+#   ██████╗ ██████╗ ███╗   ███╗███╗   ███╗ █████╗ ███╗   ██╗██████╗ ██████╗ ██╗      ██████╗  ██████╗██╗  ██╗███████╗██████╗
+#  ██╔════╝██╔═══██╗████╗ ████║████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔══██╗██║     ██╔═══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗
+#  ██║     ██║   ██║██╔████╔██║██╔████╔██║███████║██╔██╗ ██║██║  ██║██████╔╝██║     ██║   ██║██║     █████╔╝ █████╗  ██████╔╝
+#  ██║     ██║   ██║██║╚██╔╝██║██║╚██╔╝██║██╔══██║██║╚██╗██║██║  ██║██╔══██╗██║     ██║   ██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗
+#  ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║ ╚═╝ ██║██║  ██║██║ ╚████║██████╔╝██████╔╝███████╗╚██████╔╝╚██████╗██║  ██╗███████╗██║  ██║
+#   ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
 #
-#SET PREFIX HERE
+#                                             ® Made by Chiarchiaooo
+#
+# SpigotMC page: https://www.spigotmc.org/threads/command-blocker.544638/
+# Github page: https://github.com/Chiarchiaooo/CommandBlocker
+# Ko-Fi page: https://ko-fi.com/chiarchiaooo
+# Discord: https://dsc.gg/cliffycommunity
+#
+#
+#             [    placeholders      ]
+#
+# =========================================================================
+#   %prefix% - Plugin message prefix (editable in the config.yml file)
+#   %player% - Player's Name
+#   %cmd% | %command% - Blocked cmd some player is trying to execute
+# =========================================================================
+#
+#
+# [  Prefix  ]
+#
 prefix: "prefix >"
 #
-#here you can toggle the command blocker
-# true: player and staff without op, specific or general bypass permission won't see neither execute not whitelisted commands
-enabled: true
 #
-#here you can set the message player and staff without op, specific or general bypass permission will receive if they try to execute a blocked command
-# avaiable placeholders: %prefix%, %player%, %command%, no support for PAPI yet
+#  [   Toggles  ]
 #
-blocked-command-message: "%prefix% &cUnknown Command"
 #
-cmd-arg-not-found-message: "%prefix% &cUnknown argument %arg%"
+toggles:
+  #Here you can toggle the tab blocker
+  tab-blocker: true
+  #Here you can toggle permission based commands
+  perm-based-commands: true
+  #Here you can toggle the group-based command blocker
+  command-groups: true
 #
-#here you can set commands that every user (regardless of their rank and permission) can execute and see
-# remember to use "" and start the commmand with a / otherwise the blocker won't work or will spam errors
+#
+#   [   General Allowed Commands   ]
+#
+#
+#Here you can set commands that every user (regardless of their rank and permission) can execute and see
+# remember to use "" and start the command with a / otherwise the blocker won't work or will spam errors
 allowed-cmds:
   - "/examplecommand"
 #
-  #here you can set commands that only user with command's specific permission (orientalcmds.command.bypass.<command>) can execute and see
-  # remember to use "" and start only commmands with a / otherwise the blocker won't allow the player to run the command, since it doesen't have permission
-  # it's better to set staff commands here, since you can have more control on who can do what
-  #  cmdblock.bypass.examplecommand
+#
+#  [   Permission-based Allowed Commands   ]
+#
+#
+#Here you can set commands that only user with command's specific permission (cmdblock.bypass.<command>) can execute and see
+# remember to use "" and start only commands with a / otherwise the blocker won't allow the player to run the command, since it doesn't have permission
+# it's better to set staff commands Here, since you can have more control on who can do what
+#  cmdblock.bypass.examplecommand
 single-allowed-cmds:
   - "/examplecommand"
+#
+#
+#  [   Group-based Allowed Commands   ]
+#
+#
+#Here you can set the command whitelist using group associated with a specific permission
+#IMPORTANT: remember when creating groups to follow the examples below otherwise the plugin won't work
+#since tHere is no checks if the command exists or not, made sure to write the command correctly
+#
+#format:
+#  <group-name>:
+#    permission: "cmdblock.bypass.group.<group-name>"
+#      commands:
+#        - "/group-example"
+#        - "/group-example"
+#        - "/group-example"
+#
+groups:
+  admin:
+    permission: "cmdblock.bypass.group.admin"
+    commands:
+      - "/admin-example"
+      - "/admin-example"
+      - "/admin-example"
+  mod:
+    permission: "cmdblock.bypass.group.group.mod"
+    commands:
+      - "/mod-example"
+      - "/mod-example"
+      - "/mod-example"
+
+#
+#                                                     [   Messages   ]
+#
+#Here you can set the message a player/staff will receive if they try to execute a blocked command:
+#To get an exception to this rule, one of the following conditions must be satisfied:
+#    - op or "*" permission
+#    - command-specific / group / general command bypass permission
+#
+blocked-command-message: "%prefix% &cUnknown Command"
+cmd-arg-not-found-message: "%prefix% &cUnknown argument %arg%"
+#
