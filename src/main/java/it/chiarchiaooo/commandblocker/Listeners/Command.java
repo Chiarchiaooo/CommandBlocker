@@ -37,7 +37,7 @@ public class Command implements Listener {
         else if (vars.getAreCommandGroupsEnabled() && isGroupCmd(p,cmd)) return; // first check: are command groups enabled?, second check: is the player in a group? if yes, is the command in the group cmd list?
 
         e.setCancelled(true);
-        p.sendMessage(msgHandler.sendMsg(p, vars.getCmdBlockedMsg()).replace("%command%", cmd));
+        p.sendMessage(msgHandler.sendMsg(p, vars.getCmdBlockedMsg()).replaceAll("%command%|%cmd%", cmd));
     }
 
 
