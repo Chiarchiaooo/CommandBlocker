@@ -1,4 +1,4 @@
-[licenseImg]: https://img.shields.io/badge/License-GPL--3.0-important
+[licenseImg]: https://img.shields.io/badge/License-MIT-important
 [license]: https://github.com/Chiarchiaooo/CommandBlocker/blob/master/LICENSE
 [mcversionImg]: https://img.shields.io/badge/MC%20Version-1.19x-success
 [mcversion]: https://www.spigotmc.org/resources/command-blocker.99602/
