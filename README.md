@@ -71,8 +71,7 @@ cmdblock.bypass.group.admin)
 
 If you like my content and you want to support what I do, consider donating to <a href='https://ko-fi.com/U7U59S2LZ'>my ko-fi page</a>. <br>
 #### Thank you❤️
-<a href='https://ko-fi.com/U7U59S2LZ' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Donate at ko-fi.com' /></a>
-<br><br>
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/U7U59S2LZ)
 
 ## Rating
 
