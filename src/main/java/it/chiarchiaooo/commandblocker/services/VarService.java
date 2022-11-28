@@ -42,7 +42,7 @@ public class VarService {
                         "§6§lCommandBlocker §8- Help:\n"+
                         "§6Version: §f%version%\n"+
                         "\n"+
-                        "Available Commands:\n"+
+                        "Available commands:\n"+
                         "§8» §6§o/cmdblock help §8- §fShows this list\n"+
                         "§8» §6§o/cmdblock reload §8- §fReload plugin configuration.\n"+
                         "§8» §6§o/cmdblock restart §8- §fForce restart a plugin.\n")
