@@ -39,7 +39,7 @@ toggles:
   command-groups: true
 #
 #
-#   [   General Allowed Commands   ]
+#   [   General Allowed commands   ]
 #
 #
 #Here you can set commands that every user (regardless of their rank and permission) can execute and see
@@ -48,7 +48,7 @@ allowed-cmds:
   - "/examplecommand"
 #
 #
-#  [   Permission-based Allowed Commands   ]
+#  [   Permission-based Allowed commands   ]
 #
 #
 #Here you can set commands that only user with command's specific permission (cmdblock.bypass.<command>) can execute and see
@@ -59,7 +59,7 @@ single-allowed-cmds:
   - "/examplecommand"
 #
 #
-#  [   Group-based Allowed Commands   ]
+#  [   Group-based Allowed commands   ]
 #
 #
 #Here you can set the command whitelist using group associated with a specific permission
