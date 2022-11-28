@@ -1,19 +1,18 @@
-package it.chiarchiaooo.commandblocker.Commands;
+package it.chiarchiaooo.commandblocker.commands.subcommands;
 
-import it.chiarchiaooo.commandblocker.Managers.Commands;
 import it.chiarchiaooo.commandblocker.CommandBlocker;
-import it.chiarchiaooo.commandblocker.Managers.Config;
+import it.chiarchiaooo.commandblocker.commands.ACommand;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 
-public class ReloadArgument implements Commands.MainCmd {
+public class Reload extends ACommand {
 
-
-    private final CommandBlocker plugin = CommandBlocker.getInstance();
+    public Reload(CommandBlocker main) {
+        super(main);
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
@@ -21,8 +20,7 @@ public class ReloadArgument implements Commands.MainCmd {
 
             Bukkit.getLogger().info("Reloading configs...");
 
-            plugin.setConfig(new Config());
-            plugin.reloadConfig();
+            main.reloadConfig();
 
             if (sender instanceof Player) Bukkit.getLogger().info("Config reloaded");
             sender.sendMessage(("&aConfig reloaded successfully"));
