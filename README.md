@@ -2,12 +2,12 @@
 [license]: https://github.com/Chiarchiaooo/CommandBlocker/blob/master/LICENSE
 [mcversionImg]: https://img.shields.io/badge/MC%20Version-1.19x-success
 [mcversion]: https://www.spigotmc.org/resources/command-blocker.99602/
-[releaseImg]: https://img.shields.io/badge/Version-2.0-blue
+[releaseImg]: https://img.shields.io/badge/Version-3.0-blue
 [release]: https://github.com/Chiarchiaooo/CommandBlocker/releases/latest
 
 # CommandBlocker
 Simple Command Blocking plugin<br>
-Made for 1.19x servers
+Made for 1.13x -> 1.19x servers
 <br>
 
 [![releaseImg]][release] ![mcversionImg] [![licenseImg]][license]
