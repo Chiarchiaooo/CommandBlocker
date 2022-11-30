@@ -18,19 +18,19 @@ public class Reload extends ACommand {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        if (sender.hasPermission("cmdblock.reload") || sender.isOp()) {
 
-            main.getLogger().info("Reloading configs...");
+        long timestampStart = System.currentTimeMillis();
+        main.getLogger().info("Reloading configs...");
 
-            main.reloadConfig();
-            configService.setMessages();
-            configService.setBools();
-            configService.setLists();
+        main.reloadConfig();
+        configService.setMessages();
+        configService.setBools();
+        configService.setLists();
 
+        int processingTime = (int) (System.currentTimeMillis() - timestampStart);
+        if (sender instanceof Player) main.getLogger().info("Config reloaded (in "+ processingTime+" ms)");
+        sender.sendMessage(("§aConfig reloaded successfully (in "+ processingTime+" ms)"));
 
-            if (sender instanceof Player) main.getLogger().info("Config reloaded");
-            sender.sendMessage(("&aConfig reloaded successfully"));
-        }
         return false;
     }
 }

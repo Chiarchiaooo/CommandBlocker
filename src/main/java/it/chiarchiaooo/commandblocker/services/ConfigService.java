@@ -12,48 +12,44 @@ public class ConfigService {
     private final MsgService msgService;
     private final VarService varService;
 
-    private final FileConfiguration config;
-
 
     public ConfigService(CommandBlocker main) {
         this.main = main;
         this.msgService = main.getMsgService();
         this.varService = main.getVarService();
-        this.config = main.getConfig();
 
         makeConfigs();
         setMessages();
         setBools();
         setLists();
-
-        main.getLogger().info("Config caricati");
     }
 
 
     public void makeConfigs() {
-        config.options().copyDefaults();
+        main.getConfig().options().copyDefaults();
         main.saveDefaultConfig();
     }
 
 
     public void setMessages() {
-        varService.setPrefix(msgService.formatMsg(config.getString("prefix")));
-        varService.setNoArgsErrorMsg(msgService.formatMsg(config.getString("cmd-arg-not-found-message")));
-        varService.setCmdBlockedMsg(msgService.formatMsg(config.getString("blocked-command-message")));
+        varService.setPrefix(msgService.formatMsg(main.getConfig().getString("prefix")));
+        varService.setNoArgsErrorMsg(msgService.formatMsg(main.getConfig().getString("cmd-arg-not-found-message")));
+        varService.setCmdBlockedMsg(msgService.formatMsg(main.getConfig().getString("blocked-command-message")));
+        varService.setResetConfirmMessage(msgService.formatMsg(main.getConfig().getString("reset-confirm-message")));
     }
 
     public void setBools() {
-        varService.setTabBlockingEnabled(config.getBoolean("toggles.tab-blocker"));
-        varService.setCommandGroupsEnabled(config.getBoolean("toggles.command-groups"));
-        varService.setPermBasedCommandEnabled(config.getBoolean("toggles.perm-based-commands"));
+        varService.setTabBlockingEnabled(main.getConfig().getBoolean("toggles.tab-blocker"));
+        varService.setCommandGroupsEnabled(main.getConfig().getBoolean("toggles.command-groups"));
+        varService.setPermBasedCommandEnabled(main.getConfig().getBoolean("toggles.perm-based-commands"));
     }
 
     public void setLists() {
-        varService.setSingleCmdWhitelist(config.getStringList("single-allowed-cmds"));
-        varService.setCmdWhitelist(config.getStringList("allowed-cmds"));
+        varService.setSingleCmdWhitelist(main.getConfig().getStringList("single-allowed-cmds"));
+        varService.setCmdWhitelist(main.getConfig().getStringList("allowed-cmds"));
 
         for (String group : getCustomConfigurations("groups"))
-            varService.getCmdGroupCommands().put(group, config.getStringList("groups." + group + ".commands"));
+            varService.getCmdGroupCommands().put(group, main.getConfig().getStringList("groups." + group + ".commands"));
 
 
     }

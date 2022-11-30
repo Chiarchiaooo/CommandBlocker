@@ -7,6 +7,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.io.File;
+
 public class Reset extends ACommand {
 
     private final CommandBlocker main;
@@ -21,26 +23,33 @@ public class Reset extends ACommand {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!args[0].equals("CONFIRM")) {
+        if (args.length < 1) {
+            sender.sendMessage(main.getVarService().getResetConfirmMessage());
+            return true;
+
+        }else if (!args[0].equals("CONFIRM")) {
             sender.sendMessage(main.getVarService().getResetConfirmMessage());
             return true;
         }
 
+        long timestampStart = System.currentTimeMillis();
         main.getLogger().info("Resetting configs...");
 
-        if (!main.getDataFolder().delete()) {
-            sender.sendMessage("§An error occred while resetting the configs: Cannot delete folder \"CommandBlocker\"");
+
+        if (!new File(main.getDataFolder(), "config.yml").delete()) {
+            sender.sendMessage("§cAn error occred while resetting the configs: Cannot delete plugin folder");
             return true;
         }
 
         configService.makeConfigs();
+
         configService.setMessages();
         configService.setBools();
         configService.setLists();
 
-
-        if (sender instanceof Player) main.getLogger().info("Config reloaded");
-        sender.sendMessage(("&aConfig reloaded successfully"));
+        int processingTime = (int) (System.currentTimeMillis() - timestampStart);
+        if (sender instanceof Player) main.getLogger().info("Config reloaded (in "+ processingTime+" ms)");
+        sender.sendMessage("§aConfig resetted successfully (in "+ processingTime+" ms)");
         return true;
     }
 }
