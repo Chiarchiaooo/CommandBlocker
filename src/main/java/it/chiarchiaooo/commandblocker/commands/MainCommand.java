@@ -1,18 +1,16 @@
 package it.chiarchiaooo.commandblocker.commands;
 
+import it.chiarchiaooo.commandblocker.CommandBlocker;
+import it.chiarchiaooo.commandblocker.commands.subcommands.Help;
 import it.chiarchiaooo.commandblocker.commands.subcommands.Reload;
 import it.chiarchiaooo.commandblocker.commands.subcommands.Reset;
-import it.chiarchiaooo.commandblocker.commands.subcommands.Help;
 import it.chiarchiaooo.commandblocker.services.MsgService;
 import it.chiarchiaooo.commandblocker.services.VarService;
-import it.chiarchiaooo.commandblocker.CommandBlocker;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.Command;
-import org.bukkit.entity.Player;
 
 import java.util.Arrays;
-import java.util.logging.Level;
 
 
 //The class will implement CommandExecutor.
@@ -32,15 +30,12 @@ public class MainCommand extends ACommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 
         if (args.length == 0)
-            sender.sendMessage(msgService.formatMsg("&6CommandBlocker &7&l- &ePlugin made by &6&lChiarchiaooo, type &6\"/cmdblocker help\""));
+            sender.sendMessage(msgService.formatMsg("&6CommandBlocker &7&l- &ePlugin made by &6&lChiarchiaooo, type &6\"/cmdblocker help\" for help"));
 
         else {
             String subCmd = args[0];
 
-            if (!(sender instanceof Player) && !subCmd.equals("help") && !subCmd.equals("reload"))
-                main.getLogger().log(Level.SEVERE, "Console cannot execute this command");
-
-            else if (!checkPermission(sender, subCmd))
+            if (!checkPermission(sender, subCmd))
                 sender.sendMessage(msgService.formatMsg(varService.getCmdBlockedMsg()));
 
             else runCommand(sender, cmd, commandLabel, args);
@@ -69,6 +64,7 @@ public class MainCommand extends ACommand implements CommandExecutor {
 
             case "reset" -> aCmd = new Reset(this.main);
         }
+
         aCmd.onCommand(sender, cmd, commandLabel, Arrays.copyOfRange(args, 1, args.length));
     }
 }
