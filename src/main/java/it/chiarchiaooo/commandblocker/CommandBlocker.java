@@ -1,19 +1,19 @@
 package it.chiarchiaooo.commandblocker;
 
-import it.chiarchiaooo.commandblocker.listeners.TabSuggestListener;
-import it.chiarchiaooo.commandblocker.listeners.CommandListener;
-import it.chiarchiaooo.commandblocker.services.ConfigService;
 import it.chiarchiaooo.commandblocker.commands.MainCommand;
+import it.chiarchiaooo.commandblocker.listeners.CommandListener;
+import it.chiarchiaooo.commandblocker.listeners.TabSuggestListener;
+import it.chiarchiaooo.commandblocker.services.ConfigService;
 import it.chiarchiaooo.commandblocker.services.MsgService;
 import it.chiarchiaooo.commandblocker.services.VarService;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.ChatColor;
 import lombok.Getter;
+import org.bukkit.plugin.java.JavaPlugin;
 
 @Getter
 public final class CommandBlocker extends JavaPlugin {
 
-    @Getter private static CommandBlocker instance;
+    @Getter
+    private static CommandBlocker instance;
     private ConfigService configService;
     private VarService varService;
     private MsgService msgService;
@@ -34,7 +34,6 @@ public final class CommandBlocker extends JavaPlugin {
         getLogger().info("");
         getLogger().info("§aPlugin successfully enabled");
         getLogger().info("§6Remember to rate this plugin on spigotmc.org");
-        getLogger().info("");
     }
 
     private void setupServices() {
@@ -54,6 +53,12 @@ public final class CommandBlocker extends JavaPlugin {
     public void setupEvents() {
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
 
+        getLogger().info(
+                "Tab blocking? " + varService.isTabBlockingEnabled() +
+                        "Perm commands? " + varService.isPermBasedCommandEnabled() +
+                        "Group cmds" + varService.isCommandGroupsEnabled()
+        );
+
         if (varService.isTabBlockingEnabled()) // Makes sure tab blocker is enabled from config
             getServer().getPluginManager().registerEvents(new TabSuggestListener(this), this);
 
@@ -62,7 +67,7 @@ public final class CommandBlocker extends JavaPlugin {
     }
 
     public void onDisable() {
-        getLogger().info(ChatColor.RED + "Disabled ");
+        getLogger().info("§cPlugin successufully Disabled");
     }
 }
 
