@@ -45,7 +45,7 @@ toggles:
 #Here you can set commands that every user (regardless of their rank and permission) can execute and see
 # remember to use "" and start the command with a / otherwise the blocker won't work or will spam errors
 allowed-cmds:
-  - "/examplecommand"
+  - "/example-command"
 #
 #
 #  [   Permission-based Allowed commands   ]
@@ -56,7 +56,7 @@ allowed-cmds:
 # it's better to set staff commands Here, since you can have more control on who can do what
 #  cmdblock.bypass.examplecommand
 single-allowed-cmds:
-  - "/examplecommand"
+  - "/example-command"
 #
 #
 #  [   Group-based Allowed commands   ]
