@@ -16,7 +16,8 @@ public final class CommandBlocker extends JavaPlugin {
 
     private final ConsoleCommandSender CONSOLE = Bukkit.getConsoleSender();
 
-    @Getter private static CommandBlocker instance;
+    @Getter
+    private static CommandBlocker instance;
 
     private ConfigService configService;
     private VarService varService;
@@ -40,7 +41,7 @@ public final class CommandBlocker extends JavaPlugin {
 
         int processingTime = (int) (System.currentTimeMillis() - timestampStart);
         CONSOLE.sendMessage("");
-        CONSOLE.sendMessage("§aPlugin successfully enabled (in "+ processingTime+" ms)");
+        CONSOLE.sendMessage("§aPlugin successfully enabled (in " + processingTime + " ms)");
         CONSOLE.sendMessage("§6Remember to rate this plugin on spigotmc.org");
     }
 
@@ -70,5 +71,7 @@ public final class CommandBlocker extends JavaPlugin {
 
     }
 
-    public void onDisable() {CONSOLE.sendMessage("§cPlugin successfully Disabled");}
+    public void onDisable() {
+        CONSOLE.sendMessage("§cPlugin successfully Disabled");
+    }
 }
