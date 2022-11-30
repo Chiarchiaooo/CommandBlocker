@@ -13,7 +13,7 @@ public class Help extends ACommand {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        sender.sendMessage( this.main.getMsgService().sendMsg(this.main.getVarService().getHelpMessage()));
+        sender.sendMessage( this.main.getMsgService().formatMsg(this.main.getVarService().getHelpMessage()));
         return false;
     }
 }

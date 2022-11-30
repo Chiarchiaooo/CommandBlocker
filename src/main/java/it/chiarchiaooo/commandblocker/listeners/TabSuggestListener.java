@@ -26,58 +26,80 @@ public class TabSuggestListener implements Listener, TabCompleter {
         this.varService = main.getVarService();
     }
 
+    // Tab completer for the /cmdblock command
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String alias, String[] args) {
         if (args.length == 1) return Arrays.asList("help", "reload");
         return new ArrayList<>();
     }
 
+    /**
+     *
+     * Commands suggestions check on player join (rejoin after plugin reload to apply changes)
+     *
+     * @param event Event fired when an MC client asks the server for the list of available commands after joining the server
+     *
+     */
+
     @EventHandler(ignoreCancelled = true)
-    public void onCommandSend(final PlayerCommandSendEvent event) { //commands suggestions check on player join (rejoin after plugin reload to apply changes)
+    public void onCommandSend(final PlayerCommandSendEvent event) {
         Player p = event.getPlayer();
 
         if (p.hasPermission(varService.getCmdBypassPermission())) return;
 
-        event.getCommands().clear(); // Remove every command suggestion
+        // Removes every command suggestion
+        event.getCommands().clear();
 
-        event.getCommands().addAll(varService.getCmdWhitelist()); //add all the commands from the general allowed commands list
+        // New command suggestion list based on the general whitelist
+        List<String> allowedCommands = varService.getCmdWhitelist();
 
+        // Adds all permission-based command to the new suggestion list
         if (varService.isSingleCommandEnabled())
-            setupSingleCmds(event, p); // add all permission-based command to suggestion list
+             allowedCommands.addAll(setupSingleCmds(p));
 
+        // Adds all the player's group commands to the new suggestion list
         if (varService.isCommandGroupsEnabled())
-            setGroupCmds(event, p); // add all the player's group commands to the suggestion list
+            allowedCommands.addAll(setGroupCmds(p));
 
-
+        // Adds back the ew
+        event.getCommands().addAll(allowedCommands);
     }
 
     /**
-     * Add all the player's command group commands to player's suggestion list
+     * Adds all the player's command group commands to player's suggestion list
      *
      * @param e The event
      * @param p The player to check
      */
 
-    private void setGroupCmds(PlayerCommandSendEvent e, Player p) {
+    private List<String> setGroupCmds(Player p) {
+        List<String> l = new ArrayList<>();
+
         for (Map.Entry<String, List<String>> groups : varService.getCmdGroupCommands().entrySet()) {
 
-            if (p.hasPermission(groups.getKey())) e.getCommands().addAll(groups.getValue());
+            if (p.hasPermission(groups.getKey())) l.addAll(groups.getValue());
 
         }
+
+        return l;
     }
 
     /**
-     * Add all commands the player has access to his suggestion list
+     * Adds all commands the player has access to his suggestion list
      *
      * @param e The event
      * @param p The player to check
      */
 
-    private void setupSingleCmds(PlayerCommandSendEvent e, Player p) {
+    private List<String> setupSingleCmds(Player p) {
+        List<String> l = new ArrayList<>();
+
         for (String command : varService.getSingleCmdWhitelist()) {
 
-            if (p.hasPermission("cmdblock.bypass." + command)) e.getCommands().add(command);
+            if (p.hasPermission("cmdblock.bypass." + command)) l.add(command);
 
         }
+
+        return l;
     }
 }
