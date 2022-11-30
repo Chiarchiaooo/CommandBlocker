@@ -23,21 +23,20 @@ To get support open a issue on my <a href=https://github.com/Chiarchiaooo/Comman
 
 * Command whitelist: admins can define what commands other users can execute in the config file
 
-* Permission blocked commands: admins can define commands that can be executed if the user has a specific permission: cmdblock.bypass.< command >"
+* Permission blocked commands: admins can define commands that can be executed if the user has a specific permission: cmdblock.bypass.\<command\>"
 
 * Permission groups blocked commands: admins can define groups with specific permissions and commands executable and viewable only by those beloning to that group (Ex:
 cmdblock.bypass.group.admin)
 
-
 * Anti-TabComplete: non-whitelisted commands are removed from the player commands suggestions list
 (need to rejoin to apply)
 
-* Customizability: admins can define in the config file:
-- Message prefix: (like MCServer * )
-- Blocked command msg: message sent to player when he tries to execute a blocked command
-- Avaiable placeholders (with papi support): %prefix% (message prefix), %player% (player name), %command% (blocked command)
+* Customizability: admins can define in the config file, like:
+ Message prefix: (Ex: MCServer * )<br>
+ Blocked command msg: message sent to player when he tries to execute a blocked command<br>
+ Avaiable placeholders (with papi support): %prefix% (message prefix), %player% (player name), %command% (blocked command)<br>
 
-* 1.19 support
+* 1.13x -> 1.19x support
 
 <br>
 
@@ -48,18 +47,18 @@ cmdblock.bypass.group.admin)
 | Command | Description | Permission | Aliases |
 | --------------- | ---------------- | ---------------- | ---------------- |
 | /cmdblock | Shows plugin info | None | None |
-| /cmdblock help | Shows plugin help msg | None | None |
-| /cmdblock reload | Reload Plugin configs | cmdblock.reload | None |
-| /cmdblock restart | Force restart the plugin | cmdblock.restart | None |
+| /cmdblock help | Shows plugin help msg | cmdblock.help.command | None |
+| /cmdblock reload | Reload Plugin configs | cmdblock.reload.command | None |
+| /cmdblock reset | Resets plugin config file | cmdblock.reset.command | None |
 
 <br><br>
 ### Permissions
 
 | Permission | Description |
 | --------------- | ---------------- |
-| cmdblock.bypass.group.< group-name > | Group specific permission
+| cmdblock.bypass.group.\<group-name\> | Group specific permission
 | cmdblock.bypass.* | General bypass permission
-| cmdblock.bypass.< command > | Single command bypass permission
+| cmdblock.bypass.\<command\> | Single command bypass permission
 
 
 ## Config File
