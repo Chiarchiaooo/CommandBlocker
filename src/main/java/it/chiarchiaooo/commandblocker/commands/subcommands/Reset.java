@@ -27,7 +27,7 @@ public class Reset extends ACommand {
             sender.sendMessage(main.getVarService().getResetConfirmMessage());
             return true;
 
-        }else if (!args[0].equals("CONFIRM")) {
+        } else if (!args[0].equals("CONFIRM")) {
             sender.sendMessage(main.getVarService().getResetConfirmMessage());
             return true;
         }
@@ -48,8 +48,8 @@ public class Reset extends ACommand {
         configService.setLists();
 
         int processingTime = (int) (System.currentTimeMillis() - timestampStart);
-        if (sender instanceof Player) main.getLogger().info("Config reloaded (in "+ processingTime+" ms)");
-        sender.sendMessage("§aConfig resetted successfully (in "+ processingTime+" ms)");
+        if (sender instanceof Player) main.getLogger().info("Config reloaded (in " + processingTime + " ms)");
+        sender.sendMessage("§aConfig resetted successfully (in " + processingTime + " ms)");
         return true;
     }
 }
