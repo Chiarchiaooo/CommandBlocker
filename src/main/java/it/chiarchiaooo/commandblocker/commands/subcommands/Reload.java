@@ -1,10 +1,10 @@
 package it.chiarchiaooo.commandblocker.commands.subcommands;
 
-import it.chiarchiaooo.commandblocker.services.ConfigService;
-import it.chiarchiaooo.commandblocker.commands.ACommand;
 import it.chiarchiaooo.commandblocker.CommandBlocker;
-import org.bukkit.command.CommandSender;
+import it.chiarchiaooo.commandblocker.commands.ACommand;
+import it.chiarchiaooo.commandblocker.services.ConfigService;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 
@@ -28,8 +28,8 @@ public class Reload extends ACommand {
         configService.setLists();
 
         int processingTime = (int) (System.currentTimeMillis() - timestampStart);
-        if (sender instanceof Player) main.getLogger().info("Config reloaded (in "+ processingTime+" ms)");
-        sender.sendMessage(("§aConfig reloaded successfully (in "+ processingTime+" ms)"));
+        if (sender instanceof Player) main.getLogger().info("Config reloaded (in " + processingTime + " ms)");
+        sender.sendMessage(("§aConfig reloaded successfully (in " + processingTime + " ms)"));
 
         return false;
     }

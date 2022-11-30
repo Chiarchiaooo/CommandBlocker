@@ -1,7 +1,6 @@
 package it.chiarchiaooo.commandblocker.services;
 
 import it.chiarchiaooo.commandblocker.CommandBlocker;
-import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.Objects;
 import java.util.Set;
@@ -48,16 +47,10 @@ public class ConfigService {
         varService.setSingleCmdWhitelist(main.getConfig().getStringList("single-allowed-cmds"));
         varService.setCmdWhitelist(main.getConfig().getStringList("allowed-cmds"));
 
-        for (String group : getCustomConfigurations("groups"))
-            varService.getCmdGroupCommands().put(group, main.getConfig().getStringList("groups." + group + ".commands"));
-
+        Set<String> commandGroups= Objects.requireNonNull(main.getConfig().getConfigurationSection("group")).getKeys(false);
+        for (String group : commandGroups)
+            varService.getCmdGroupCommands().put(main.getConfig().getString("groups." + group + ".permission"), main.getConfig().getStringList("groups." + group + ".commands"));
 
     }
-
-    public Set<String> getCustomConfigurations(String path) {
-        return Objects.requireNonNull(main.getConfig()
-                .getConfigurationSection(path)).getKeys(false);
-    }
-
 }
 

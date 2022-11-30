@@ -1,21 +1,19 @@
 package it.chiarchiaooo.commandblocker.listeners;
 
-import it.chiarchiaooo.commandblocker.services.VarService;
-import org.bukkit.Bukkit;
-import org.bukkit.event.player.PlayerCommandSendEvent;
 import it.chiarchiaooo.commandblocker.CommandBlocker;
+import it.chiarchiaooo.commandblocker.services.VarService;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.event.EventHandler;
-import org.bukkit.command.Command;
-import org.bukkit.event.Listener;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandSendEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 public class TabSuggestListener implements Listener, TabCompleter {
 
@@ -42,19 +40,14 @@ public class TabSuggestListener implements Listener, TabCompleter {
     public void onCommandSend(final PlayerCommandSendEvent event) {
         Player p = event.getPlayer();
 
-        Bukkit.getLogger().info("Bypass? "+p.hasPermission(varService.getCmdBypassPermission()));
-
         if (p.hasPermission(varService.getCmdBypassPermission())) return;
 
 
         // Removes every command suggestion
         event.getCommands().clear();
 
-
         // New command suggestion list based on the general whitelist
         List<String> allowedCommands = varService.getCmdWhitelist();
-
-        Bukkit.getLogger().info("Lista: "+ allowedCommands.toString());
 
         // Adds all permission-based command to the new suggestion list
         if (varService.isPermBasedCommandEnabled())
@@ -65,12 +58,10 @@ public class TabSuggestListener implements Listener, TabCompleter {
             allowedCommands.addAll(setGroupCmds(p));
 
         // Deletes every / in the commands, since they are not required in the suggestions
-        allowedCommands.replaceAll(s-> s.replace("/", ""));
+        allowedCommands.replaceAll(s -> s.replace("/", ""));
 
         // Adds back the new list
         event.getCommands().addAll(allowedCommands);
-
-        Bukkit.getLogger().info("lista MC: "+ event.getCommands());
     }
 
     /**

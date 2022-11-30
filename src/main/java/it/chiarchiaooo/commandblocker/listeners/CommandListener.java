@@ -1,18 +1,18 @@
 package it.chiarchiaooo.commandblocker.listeners;
 
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import it.chiarchiaooo.commandblocker.services.VarService;
-import it.chiarchiaooo.commandblocker.services.MsgService;
 import it.chiarchiaooo.commandblocker.CommandBlocker;
+import it.chiarchiaooo.commandblocker.services.MsgService;
+import it.chiarchiaooo.commandblocker.services.VarService;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CommandListener implements Listener {
 
