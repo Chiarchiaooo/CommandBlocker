@@ -21,22 +21,24 @@ To get support open a issue on my <a href=https://github.com/Chiarchiaooo/Comman
 
 ## Features
 
-* Command whitelist: admins can define what commands other users can execute in the config file
+* **Command whitelist**: _admins can define what commands other users can execute in the config file_
 
-* Permission blocked commands: admins can define commands that can be executed if the user has a specific permission: cmdblock.bypass.\<command\>"
+* **Permission blocked commands**: _admins can define commands that can be executed if the user has a specific permission: cmdblock.bypass.\<command\>_
 
-* Permission groups blocked commands: admins can define groups with specific permissions and commands executable and viewable only by those beloning to that group (Ex:
-cmdblock.bypass.group.admin)
+* **Permission groups blocked commands**: _admins can define groups with specific permissions and commands executable and viewable only by those beloning to that group (Ex:
+cmdblock.bypass.group.admin)_
 
-* Anti-TabComplete: non-whitelisted commands are removed from the player commands suggestions list
-(need to rejoin to apply)
+* **Anti-TabComplete**: _non-whitelisted commands are removed from the player commands suggestions list
+(need to rejoin to apply)_
 
-* Customizability: admins can define in the config file, like:
- Message prefix: (Ex: MCServer * )<br>
- Blocked command msg: message sent to player when he tries to execute a blocked command<br>
- Avaiable placeholders (with papi support): %prefix% (message prefix), %player% (player name), %command% (blocked command)<br>
+* **Reloadable/Resettable config file**: _possibility to reload and reset the config without the use of plugman, /reload or manual action_
 
-* 1.13x -> 1.19x support
+* **Customizability**, _admins can define in the config file, like:_<br>
+ \- _Message prefix: (Ex: MCServer >)_<br>
+ \- _Blocked command msg: message sent to player when he tries to execute a blocked command_<br>
+ \- _Avaiable placeholders (with papi support): %prefix% (message prefix), %player% (player name), %command% (blocked command)_<br>
+
+* **1.13x -> 1.19x support**
 
 <br>
 
