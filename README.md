@@ -20,7 +20,7 @@ Made for 1.13x -> 1.19x servers
 There are 3 possible ways to recieve support:
  * Open a <a href=https://github.com/Chiarchiaooo/CommandBlocker/issues> issue </a>
  * Joining my <a href=https://dsc.gg/cliffycommunity>discord</a> and going on the **help section** after verifying
- * DM Me to **~Luke#7123** or <a href=https://telegram.me/Ciarcia>**@Ciarcia**</a>
+ * DM Me to **Chiarchiaooo** or <a href=https://telegram.me/Ciarcia>**@Ciarcia**</a>
 
 ## Features
 
